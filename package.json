@@ -4,7 +4,7 @@
   "description": "proyecto betocar",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --"
+    "start": "babel-node app.js"
   },
   "keywords": [
     "taller",
@@ -23,6 +23,10 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
     "nodemon": "^1.18.10"
   }
 }
