@@ -13,11 +13,24 @@ var cors = require('cors');
 const app = express();
 
 //cors permiso
-app.use(cors());
-
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
 //Parse informacion entrando
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '20mb'}));
+app.use(bodyParser.urlencoded({limit: '20mb', extended: true}));
+app.use((req, res, next) => {
+
+  // Dominio que tengan acceso (ej. 'http://example.com')
+     res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  // Metodos de solicitud que deseas permitir
+     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  
+  // Encabecedados que permites (ej. 'X-Requested-With,content-type')
+     res.setHeader('Access-Control-Allow-Headers', '*');
+  
+  next();
+})
 app.use(dll_producto_router);
 app.use(cliente_router);
 app.use(vehiculo_router);
